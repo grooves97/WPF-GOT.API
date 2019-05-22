@@ -1,0 +1,44 @@
+﻿<Window x:Class="GOT.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:local="clr-namespace:GOT.UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="80*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Column="0" Grid.Row="0" Name="characterNameTextBox" TextWrapping="Wrap" ToolTip="Enter a name of character" 
+                     FontSize="18" TextChanged="CharacterNameTextBoxTextChanged" Background="Silver" Foreground="LightGray"/>
+
+        <ListBox Name="charactersList" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Background="#FF2C3236" Foreground="LightGray" 
+                     ItemsSource="{DynamicResource ResourceKey=characters}" MouseDoubleClick="CharactersListMouseDoubleClick" 
+                     ToolTip="Double click to show information" Cursor="Hand">
+            <ListBox.Resources>
+                <col:ArrayList x:Key="characters"></col:ArrayList>
+            </ListBox.Resources>
+        </ListBox>
+
+        <cefSharp:ChromiumWebBrowser Grid.Column="1" Grid.RowSpan="2" 
+                                         Address="http://viewers-guide.hbo.com/game-of-thrones/season-8/episode-4/map/location/18/dragonstone"/>
+
+    </Grid>
+</Window>
